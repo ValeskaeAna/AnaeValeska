@@ -3,20 +3,28 @@ const getCSS = (variavel) => {
 }
 
 const tickConfig = {
-    family: getCSS('--font'),
+    color: getCSS('--primary-color'),
     size: 16,
-    color: getCSS('--primary-color')
+    family: getCSS('--font')
 }
 
-function criarGrafico (data, layout) {
+function criarGrafico(data, layout) {
     const grafico = document.createElement('div');
     grafico.className = 'grafico';
     document.getElementById('graficos-container').appendChild(grafico);
-    const Config = {
-        responsiv: true,
-        displayayModeBar: false
-      }
-    Plotly.newPlot (grafico,data, layout, Config);
+    const config = {
+        responsive: true,
+        displayModeBar: false
+    }
+    Plotly.newPlot(grafico, data, layout, config);
 }
 
-export {getCSS, tickConfig}
+
+function incluirTexto(texto) {
+    const container = document.getElementById('graficos-container')
+    const paragrafo = document.createElement('p')
+    paragrafo.classList.add('graficos-container__texto')
+    container.appendChild(paragrafo)
+}
+
+export { getCSS, tickConfig, criarGrafico, incluirTexto }
